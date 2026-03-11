@@ -25,13 +25,55 @@ OpenClaw 云服务器安全护盾 Skill。
 
 ## 使用方式
 
-1. 将本仓库内容放到本地 Codex skills 目录，例如：
+### 方式一：一键安装到默认 Codex skills 目录（推荐）
 
 ```bash
-~/.codex/skills/openclaw-shield
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo Eilaiwangwh/openclaw-shield \
+  --path . \
+  --name openclaw-shield
 ```
 
-2. 在会话中触发与安全执行相关任务时，Codex 会根据 `SKILL.md` 规则执行检查与过滤。
+安装后重启 Codex。
+
+### 方式二：安装到 OpenClaw skills 目录
+
+```bash
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo Eilaiwangwh/openclaw-shield \
+  --path . \
+  --name openclaw-shield \
+  --dest ~/.openclaw/workspace/skills
+```
+
+安装后重启 OpenClaw。
+
+### 方式三：手动安装（无 installer 环境时）
+
+```bash
+git clone https://github.com/Eilaiwangwh/openclaw-shield.git
+mkdir -p ~/.openclaw/workspace/skills
+cp -R ./openclaw-shield ~/.openclaw/workspace/skills/
+```
+
+### 升级到最新版本
+
+如果已安装同名目录，先删除旧目录再重装：
+
+```bash
+rm -rf ~/.openclaw/workspace/skills/openclaw-shield
+python3 ~/.codex/skills/.system/skill-installer/scripts/install-skill-from-github.py \
+  --repo Eilaiwangwh/openclaw-shield \
+  --path . \
+  --name openclaw-shield \
+  --dest ~/.openclaw/workspace/skills
+```
+
+### 触发示例
+
+- “使用 `openclaw-shield` 先检查这条命令是否安全，再执行。”
+- “按 Shield 流程先做路径检查，再读取该文件。”
+- “输出前对结果做敏感信息脱敏。”
 
 ## 适用场景
 
